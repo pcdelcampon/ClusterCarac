@@ -1,2 +1,2 @@
-# clusterCarac
-Función para caracterizar variables categóricas por clases. Por ahora incluye `cluster_carac_quali`.
+# ClusterCarac
+Function to characterize categorical variables by classes using V-test statistics and p-values. Currently includes `cluster_carac_quali`.

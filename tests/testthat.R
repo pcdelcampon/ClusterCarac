@@ -1,3 +1,3 @@
 library(testthat)
-library(clusterCarac)
-test_check("clusterCarac")
+library(ClusterCarac)
+test_check("ClusterCarac")
