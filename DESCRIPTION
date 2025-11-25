@@ -1,0 +1,20 @@
+Package: ClusterCarac
+Title: Tools for Cluster Characterization
+Version: 0.0.0.9000
+Authors@R: person("Pedro César", "Del Campo Neira", email = "pcdelcampon@gmail.com", role = c("aut", "cre"))
+Description: Characterization of categorical variables by classes using inferencial statistics.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Depends: R (>= 4.1)
+Imports:
+    dplyr,
+    tidyr,
+    purrr,
+    stats,
+    utils
+Suggests:
+    testthat (>= 3.0.0),
+    forcats
+Config/testthat/edition: 3
