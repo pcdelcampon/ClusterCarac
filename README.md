@@ -6,3 +6,5 @@ Install directly from GitHub (simplest current option):
 install.packages("remotes")  # if you don't have it
 remotes::install_github("pcdelcampon/ClusterCarac")
 ```
+
+![ClusterCarac overview](inst/images/ClusterCarac_IA001.png)
