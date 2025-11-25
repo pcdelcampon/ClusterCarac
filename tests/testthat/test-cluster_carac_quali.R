@@ -16,3 +16,35 @@ test_that("cluster_carac_quali returns tibble with expected cols", {
     "nj", "nk", "njk"
   ) %in% names(res)))
 })
+
+test_that("cluster_carac_quali respects weights when provided", {
+  dtf <- data.frame(
+    color = c("rojo", "azul", "rojo", "azul"),
+    size  = c("S", "M", "S", "M")
+  )
+  classc <- factor(c("c1", "c1", "c2", "c2"))
+  wt <- c(1, 10, 1, 10)
+
+  res_unw <- cluster_carac_quali(dtf, classc, alpha = 1, extra_info = TRUE)
+  res_wt  <- cluster_carac_quali(dtf, classc, alpha = 1, extra_info = TRUE, wt = wt)
+
+  # Pick a specific combination to compare
+  unw_row <- res_unw[res_unw$variable == "color" & res_unw$category == "azul" & res_unw$class == "c1", , drop = FALSE]
+  wt_row  <- res_wt[res_wt$variable == "color" & res_wt$category == "azul" & res_wt$class == "c1", , drop = FALSE]
+
+  expect_equal(unw_row$njk, 1)
+  expect_equal(wt_row$njk, 10)
+})
+
+test_that("cluster_carac_quali extra_info drops internal counts", {
+  dtf <- data.frame(
+    color = c("rojo", "azul"),
+    size  = c("S", "M")
+  )
+  classc <- factor(c("c1", "c1"))
+
+  res <- cluster_carac_quali(dtf, classc, alpha = 1, extra_info = FALSE)
+
+  expect_false(any(c("nk", "njk") %in% names(res)))
+  expect_true("Weight" %in% names(res))
+})

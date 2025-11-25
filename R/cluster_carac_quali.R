@@ -6,6 +6,7 @@ cluster_carac_quali <-
     if (!is.null(wt)) {
       stopifnot(length(wt) == nrow(dtf))
     }
+    wt_vec <- if (is.null(wt)) rep(1, nrow(dtf)) else wt
 
     lFclass <- levels( classc )
     v_lim <- qnorm(1 - alpha/2)
@@ -15,8 +16,8 @@ cluster_carac_quali <-
     # njk Category and class size
         
     dq <- unclass( dtf ) %>%
-       map( ~ tibble( category = .x , classc = classc , wt = wt ) %>% 
-              count( category , classc , wt = wt , name = "njk" , .drop = FALSE )
+       map( ~ tibble( category = .x , classc = classc , wt_col = wt_vec ) %>% 
+              count( category , classc , wt = wt_col , name = "njk" , .drop = FALSE )
           ) %>% 
        plyr::ldply( as_tibble ) %>% 
        rename( variable = .id ) %>% 
