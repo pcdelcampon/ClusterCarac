@@ -41,7 +41,7 @@ cluster_carac_quali <-
       arrange( class , desc( test_value )  ) %>%
       filter( abs(test_value) >= v_lim )
 
-    return(dq)
+    return(dqr)
     
 }
   

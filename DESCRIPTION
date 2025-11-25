@@ -2,7 +2,7 @@ Package: ClusterCarac
 Title: Tools for Cluster Characterization
 Version: 0.0.0.9000
 Authors@R: person("Pedro Cesar", "Del Campo Neira", email = "pcdelcampon@gmail.com", role = c("aut", "cre"))
-Description: Characterization of categorical variables by classes using inferential statistics (V-tests, p-values).
+Description: Characterization of categorical variables by classes using inferential statistics.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
