@@ -1,25 +1,25 @@
-
 cluster_carac_quali <- 
-  function( dtf , classc , v_lim = 2 , neg = TRUE , na_class = FALSE , na_cat = FALSE ){  
+  function( dtf , classc , alpha = 0.05 , neg = TRUE , na_class = FALSE , na_cat = FALSE, extra_info = TRUE , wt = NULL ){  
     
     require( tidyverse )
     
+    if (!is.null(wt)) {
+      stopifnot(length(wt) == nrow(dtf))
+    }
+
     lFclass <- levels( classc )
-    
+    v_lim <- qnorm(1 - alpha/2)
+
     # nj Category size
     # nk Class size
     # njk Category and class size
         
     dq <- unclass( dtf ) %>%
-       map( ~ tibble( category = .x , classc = classc ) %>% 
-              # mutate( category = as.character(category) ,
-              #         classc   = as.character(classc  ) ,
-              #       ) %>% 
-              count( category , classc , name = "njk" , .drop = FALSE )
+       map( ~ tibble( category = .x , classc = classc , wt = wt ) %>% 
+              count( category , classc , wt = wt , name = "njk" , .drop = FALSE )
           ) %>% 
        plyr::ldply( as_tibble ) %>% 
        rename( variable = .id ) %>% 
-       # filter( !( is.na(classc) | is.na(category)  ) )  %>%
       group_by( variable , classc ) %>%
       mutate( nk = sum(njk) ) %>%
       group_by( variable , category ) %>%
@@ -37,10 +37,14 @@ cluster_carac_quali <-
     dqr <-  dq %>%
       transmute( class = classc    , variable , category ,
                  test_value = V_test, p_value = prob,
-                 clas_cat = clas_mod , cat_clas = mod_clas , global = Global , Weight = nj ) %>%
+                 clas_cat = clas_mod , cat_clas = mod_clas , global = Global , nj = nj , nk , njk ) %>%
       arrange( class , desc( test_value )  ) %>%
       filter( abs(test_value) >= v_lim )
 
+    if( !extra_info ){
+      dqr <- dqr |> rename(Weight = nj) |> select(-nk,-njk)
+    } 
+    
     return(dqr)
     
 }
