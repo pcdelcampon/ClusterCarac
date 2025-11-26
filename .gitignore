@@ -5,3 +5,6 @@
 .Rbuildignore
 .DS_Store
 .Rproj
+
+/.quarto/
+**/*.quarto_ipynb

@@ -1,6 +1,31 @@
-# ClusterCarac
+![](inst/images/ClusterCarac_IA001.png)
 
-ClusterCarac is an R package designed to describe and characterize groups or classes resulting from classification or clustering analyses. It can work with both qualitative and quantitative variables, although it currently supports only qualitative variables.
+# What it does!
+
+
+**ClusterCarac** is an R package designed to describe and characterize groups resulting from classification or clustering analyses, as well as groups defined by observational attributes. It identifies the qualitative variables that most strongly represent each cluster and shows the categories from qualitative variables that best explain the distinctive profile of each group.
+
+# Where you can use ClusterCarac !
+
+**ClusterCarac** can be used in any situation where you want to better understand the groups that appear in your data. Whether those groups come from a clustering method or are simply categories you already have (like age groups, customer segments, regions, or types of users), the package helps you **describe what makes each group unique**.
+
+ **Note:** ClusterCarac currently works with qualitative variables. Support for quantitative variables and additional features is coming soon.
+
+You can use it in:
+
+-   **Market and customer segmentation**, to understand what characteristics define each segment.
+
+-   **Social and demographic studies**, to explore how different groups in a population differ from one another.
+
+-   **Public health or education projects**, to identify the key traits of the communities or groups you are studying.
+
+-   **User or product analytics**, to see what features stand out in each category of users or items.
+
+-   **Any project with data**, where you have groups and want a simple way to describe them clearly.
+
+In short, ClusterCarac helps you **summarize and interpret groups** so you can communicate insights more easily, even if you are not a technical expert.
+
+# How to install!
 
 Install directly from GitHub (simplest current option):
 
@@ -8,5 +33,3 @@ Install directly from GitHub (simplest current option):
 install.packages("remotes")  # if you don't have it
 remotes::install_github("pcdelcampon/ClusterCarac")
 ```
-
-![](inst/images/ClusterCarac_IA001.png)
