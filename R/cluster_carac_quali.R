@@ -35,20 +35,20 @@ cluster_carac_quali <-
               clas_mod = njk/nj ,
               mod_clas = njk/nk ,
               Global   = nj/n   ,
-              prob     = ifelse( mod_clas >= Global , phyper(njk - 1, nj, n - nj, nk, lower.tail = FALSE) , phyper( njk , nj , n-nj , nk ) )  ,
-              V_test   = ifelse( mod_clas >= Global , qnorm(prob/2, lower.tail = FALSE) , qnorm(prob/2) ) ) %>%
+              p_value  = ifelse( mod_clas >= Global , phyper(njk - 1, nj, n - nj, nk, lower.tail = FALSE) , phyper( njk , nj , n-nj , nk ) )  ,
+              V_test   = ifelse( mod_clas >= Global , qnorm(p_value/2, lower.tail = FALSE) , qnorm(p_value/2) ) ) %>%
       ungroup()
 
 
     dqr <-  dq %>%
       transmute( class = classc    , variable , category ,
-                 test_value = V_test, p_value = prob,
-                 clas_cat = clas_mod , cat_clas = mod_clas , global = Global , nj = nj , nk , njk ) %>%
+                 staistic = V_test, p_value = p_value,
+                 clas_cat = clas_mod , cat_clas = mod_clas , global = Global , n = n , nj = nj , nk , njk ) %>%
       arrange( class , desc( test_value )  ) %>%
       filter( abs(test_value) >= v_lim )
 
     if( !extra_info ){
-      dqr <- dqr |> rename(Weight = nj) |> select(-nk,-njk)
+      dqr <- dqr |> rename(Weight = nj) |> select(-nk,-njk,-n)
     } 
     
     return(dqr)
