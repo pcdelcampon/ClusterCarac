@@ -48,3 +48,19 @@ test_that("cluster_carac_quali extra_info drops internal counts", {
   expect_false(any(c("nk", "njk") %in% names(res)))
   expect_true("Weight" %in% names(res))
 })
+
+test_that("cluster_carac_quali handles NA filtering flags", {
+  dtf <- data.frame(
+    color = c("rojo", NA, "azul"),
+    size  = c("S", "M", NA)
+  )
+  classc <- factor(c("c1", NA, "c2"))
+
+  res_drop <- cluster_carac_quali(dtf, classc, alpha = 1, na_class = FALSE, na_categ = FALSE)
+  expect_false(any(is.na(res_drop$category)))
+  expect_false(any(is.na(res_drop$class)))
+
+  res_keep <- cluster_carac_quali(dtf, classc, alpha = 1, na_class = TRUE, na_categ = TRUE)
+  expect_true(any(is.na(res_keep$category)))
+  expect_true(any(is.na(res_keep$class)))
+})

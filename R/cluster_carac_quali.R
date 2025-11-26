@@ -1,5 +1,5 @@
 cluster_carac_quali <- 
-  function( dtf , classc , alpha = 0.05 , neg = TRUE , na_class = FALSE , na_cat = FALSE, extra_info = TRUE , wt = NULL ){  
+  function( dtf , classc , alpha = 0.05 , neg = TRUE , wt = NULL, na_class = FALSE , na_categ = FALSE, extra_info = TRUE  ){  
     
     require( tidyverse )
     
@@ -20,7 +20,12 @@ cluster_carac_quali <-
               count( category , classc , wt = wt_col , name = "njk" , .drop = FALSE )
           ) %>% 
        plyr::ldply( as_tibble ) %>% 
-       rename( variable = .id ) %>% 
+      rename( variable = .id )
+
+    if( !na_categ ){ dq <- dq |> filter( !is.na(category) ) }  
+    if( !na_class ){ dq <- dq |> filter( !is.na(classc  ) ) }  
+      
+    dq <- dq %>%
       group_by( variable , classc ) %>%
       mutate( nk = sum(njk) ) %>%
       group_by( variable , category ) %>%
