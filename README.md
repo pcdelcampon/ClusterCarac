@@ -35,7 +35,7 @@ remotes::install_github("pcdelcampon/ClusterCarac")
 
 ## Motivation
 
-This package is inspired by a previous project called [**FactoClass**](https://cran.r-project.org/web/packages/FactoClass/index.html), developed at the **Universidad Nacional de Colombia** in collaboration with Professor [**Campo Elías Pardo**](https://www.linkedin.com/in/campo-el%C3%ADas-pardo-5ab19435/) and other contributors. Users of that package often had recurring questions about the characterization functions applied to the clusters produced by the original tool. These questions highlighted the need for clearer and more dedicated methods to describe the groups or segments obtained from clustering or classification procedures.
+This package is inspired by a previous project called [FactoClass](https://cran.r-project.org/web/packages/FactoClass/index.html), developed at the **Universidad Nacional de Colombia** in collaboration with Professor [Campo Elías Pardo](https://www.linkedin.com/in/campo-el%C3%ADas-pardo-5ab19435/) and other contributors. Users of that package often had recurring questions about the characterization functions applied to the clusters produced by the original tool. These questions highlighted the need for clearer and more dedicated methods to describe the groups or segments obtained from clustering or classification procedures.
 
 For this reason, I decided to create this new set of tools, focusing specifically on the characterization of classifications or segments, while continuing the methodological direction initiated with FactoClass.
 
