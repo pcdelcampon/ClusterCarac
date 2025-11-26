@@ -5,7 +5,7 @@
 
 **ClusterCarac** is an R package designed to describe and characterize groups resulting from classification or clustering analyses, as well as groups defined by observational attributes. It identifies the qualitative variables that most strongly represent each cluster and shows the categories from qualitative variables that best explain the distinctive profile of each group.
 
-# Where you can use ClusterCarac !
+# Where you can use ClusterCarac!
 
 **ClusterCarac** can be used in any situation where you want to better understand the groups that appear in your data. Whether those groups come from a clustering method or are simply categories you already have (like age groups, customer segments, regions, or types of users), the package helps you **describe what makes each group unique**.
 
