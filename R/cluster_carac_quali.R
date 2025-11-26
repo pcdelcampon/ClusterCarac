@@ -42,7 +42,7 @@ cluster_carac_quali <-
 
     dqr <-  dq %>%
       transmute( class = classc    , variable , category ,
-                 staistic = V_test, p_value = p_value,
+                 statistic = V_test, p_value = p_value,
                  clas_cat = clas_mod , cat_clas = mod_clas , global = Global , n = n , nj = nj , nk , njk ) %>%
       arrange( class , desc( test_value )  ) %>%
       filter( abs(test_value) >= v_lim )
