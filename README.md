@@ -1,10 +1,10 @@
 ![](inst/images/ClusterCarac_IA001.png)
 
-# What it does!
+## What it does!
 
 **ClusterCarac** is an R package designed to describe and characterize groups resulting from classification or clustering analyses, as well as groups defined by observational attributes. It identifies the qualitative variables that most strongly represent each cluster and shows the categories from qualitative variables that best explain the distinctive profile of each group.
 
-# Where you can use ClusterCarac!
+## Where you can use ClusterCarac!
 
 **ClusterCarac** can be used in any situation where you want to better understand the groups that appear in your data. Whether those groups come from a clustering method or are simply categories you already have (like age groups, customer segments, regions, or types of users), the package helps you **describe what makes each group unique**.
 
@@ -24,7 +24,7 @@ You can use it in:
 
 In short, ClusterCarac helps you **summarize and interpret groups** so you can communicate insights more easily, even if you are not a technical expert.
 
-# How to install!
+## How to install!
 
 Install directly from GitHub (simplest current option):
 
@@ -33,14 +33,12 @@ install.packages("remotes")  # if you don't have it
 remotes::install_github("pcdelcampon/ClusterCarac")
 ```
 
-# Motivation
+## Motivation
 
 This package is inspired by a previous project called [**FactoClass**](https://cran.r-project.org/web/packages/FactoClass/index.html), developed at the **Universidad Nacional de Colombia** in collaboration with Professor [**Campo Elías Pardo**](https://www.linkedin.com/in/campo-el%C3%ADas-pardo-5ab19435/) and other contributors. Users of that package often had recurring questions about the characterization functions applied to the clusters produced by the original tool. These questions highlighted the need for clearer and more dedicated methods to describe the groups or segments obtained from clustering or classification procedures.
 
 For this reason, I decided to create this new set of tools, focusing specifically on the characterization of classifications or segments, while continuing the methodological direction initiated with FactoClass.
 
-# Author
+## Author
 
-Pedro Cesar Del Campo Neira  
-pcdelcampon@gmail.com  
-[Personal site](https://pcdelcampon.github.io/mywebquarto/)
+Pedro Cesar Del Campo Neira · pcdelcampon@gmail.com · [Personal site](https://pcdelcampon.github.io/mywebquarto/)
