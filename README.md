@@ -41,4 +41,6 @@ For this reason, I decided to create this new set of tools, focusing specificall
 
 # Author
 
-Pedro Cesar Del Campo Neira [Portfolio](https://pcdelcampon.github.io/mywebquarto)
+Pedro Cesar Del Campo Neira  
+pcdelcampon@gmail.com  
+[Personal site](https://pcdelcampon.github.io/mywebquarto/)
