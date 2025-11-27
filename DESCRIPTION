@@ -11,7 +11,7 @@ Depends: R (>= 4.1)
 Imports:
     dplyr,
     tidyr,
-    purrr,
+    tidyselect,
     stats,
     utils
 Suggests:
