@@ -5,27 +5,25 @@
 #'
 #' @param dtf A data.frame/tibble of qualitative predictors variables (columns).
 #' @param classc A vector of class labels, length `nrow(dtf)`.
-#' @param alpha Significance level in (0,1) used to derive the V-test cutoff.
-#' @param neg Reserved (currently unused).
+#' @param alpha Significance level in (0,1) used to derive the test value cutoff.
 #' @param wt Optional numeric vector of weights, length `nrow(dtf)`.
-#' @param na_class Logical; if FALSE, rows with NA in `classc` are dropped.
-#' @param na_categ Logical; if FALSE, rows with NA in any qualitative predictor variable are dropped.
-#' @param extra_info Logical; if FALSE, drops internal counts and renames `nj` to
-#'   `weight` in the output.
+#' @param na_class Logical; if TRUE, values with NA in `classc` are dropped; if FALSE, NA values are considered a new cluster or clasification. By default is TRUE.
+#' @param na_categ Logical; if TRUE, values with NA in any qualitative predictor variable are dropped. if FALSE, NA values are considered a new category. By default is TRUE.
+#' @param extra_info Logical; if FALSE, drops internal counts and renames `nj` to `weight` in the output.
 #'
 #' @return A tibble with columns:
 #' \itemize{
-#'   \item `class`: class label.
-#'   \item `variable`: predictor name.
-#'   \item `category`: category of the predictor.
+#'   \item `class`: cluster or classification.
+#'   \item `variable`: qualitative variables.
+#'   \item `category`: categories from qualitative predictor variables.
 #'   \item `statistic`: V-test statistic (signed z-score).
 #'   \item `p_value`: p-value associated with the V-test.
 #'   \item `clas_cat`: proportion of the category belonging to the class (njk/nj).
 #'   \item `cat_clas`: proportion of the class made of that category (njk/nk).
 #'   \item `global`: global proportion of the category (nj/n).
-#'   \item `n`: total weighted count for the variable.
+#'   \item `n`: total weighted count, it could vary if NA options are TRUE.
 #'   \item `nj`: weighted count for the category.
-#'   \item `nk`: weighted count for the class within the variable.
+#'   \item `nk`: weighted count for the class (cluster or classification).
 #'   \item `njk`: weighted count for the category-class combination.
 #' }
 #' When `extra_info = FALSE`, returns without `nk`, `njk`, `n` and with `weight` (renamed from `nj`).
@@ -38,7 +36,7 @@
 
 
 cluster_carac_quali <- 
-  function( dtf , classc , alpha = 0.05 , neg = TRUE , wt = NULL, na_class = FALSE , na_categ = FALSE, extra_info = TRUE  ){  
+  function( dtf , classc , alpha = 0.05, wt = NULL, na_class = TRUE , na_categ = TRUE, extra_info = TRUE  ){  
     
     # input validation with explicit messages
     if (!is.data.frame(dtf)) {

@@ -8,10 +8,9 @@ cluster_carac_quali(
   dtf,
   classc,
   alpha = 0.05,
-  neg = TRUE,
   wt = NULL,
-  na_class = FALSE,
-  na_categ = FALSE,
+  na_class = TRUE,
+  na_categ = TRUE,
   extra_info = TRUE
 )
 }
@@ -20,33 +19,30 @@ cluster_carac_quali(
 
 \item{classc}{A vector of class labels, length \code{nrow(dtf)}.}
 
-\item{alpha}{Significance level in (0,1) used to derive the V-test cutoff.}
-
-\item{neg}{Reserved (currently unused).}
+\item{alpha}{Significance level in (0,1) used to derive the test value cutoff.}
 
 \item{wt}{Optional numeric vector of weights, length \code{nrow(dtf)}.}
 
-\item{na_class}{Logical; if FALSE, rows with NA in \code{classc} are dropped.}
+\item{na_class}{Logical; if TRUE, values with NA in \code{classc} are dropped; if FALSE, NA values are considered a new cluster or clasification. By default is TRUE.}
 
-\item{na_categ}{Logical; if FALSE, rows with NA in any qualitative predictor variable are dropped.}
+\item{na_categ}{Logical; if TRUE, values with NA in any qualitative predictor variable are dropped. if FALSE, NA values are considered a new category. By default is TRUE.}
 
-\item{extra_info}{Logical; if FALSE, drops internal counts and renames \code{nj} to
-\code{weight} in the output.}
+\item{extra_info}{Logical; if FALSE, drops internal counts and renames \code{nj} to \code{weight} in the output.}
 }
 \value{
 A tibble with columns:
 \itemize{
-\item \code{class}: class label.
-\item \code{variable}: predictor name.
-\item \code{category}: category of the predictor.
+\item \code{class}: cluster or classification.
+\item \code{variable}: qualitative variables.
+\item \code{category}: categories from qualitative predictor variables.
 \item \code{statistic}: V-test statistic (signed z-score).
 \item \code{p_value}: p-value associated with the V-test.
 \item \code{clas_cat}: proportion of the category belonging to the class (njk/nj).
 \item \code{cat_clas}: proportion of the class made of that category (njk/nk).
 \item \code{global}: global proportion of the category (nj/n).
-\item \code{n}: total weighted count for the variable.
+\item \code{n}: total weighted count, it could vary if NA options are TRUE.
 \item \code{nj}: weighted count for the category.
-\item \code{nk}: weighted count for the class within the variable.
+\item \code{nk}: weighted count for the class (cluster or classification).
 \item \code{njk}: weighted count for the category-class combination.
 }
 When \code{extra_info = FALSE}, returns without \code{nk}, \code{njk}, \code{n} and with \code{weight} (renamed from \code{nj}).
