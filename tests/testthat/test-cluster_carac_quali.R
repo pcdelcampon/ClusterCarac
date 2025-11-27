@@ -25,8 +25,8 @@ test_that("cluster_carac_quali respects weights when provided", {
   classc <- factor(c("c1", "c1", "c2", "c2"))
   wt <- c(1, 10, 1, 10)
 
-  res_unw <- cluster_carac_quali(dtf, classc, alpha = 1, extra_info = TRUE)
-  res_wt  <- cluster_carac_quali(dtf, classc, alpha = 1, extra_info = TRUE, wt = wt)
+  res_unw <- cluster_carac_quali(dtf, classc, alpha = 0.99, extra_info = TRUE)
+  res_wt  <- cluster_carac_quali(dtf, classc, alpha = 0.99, extra_info = TRUE, wt = wt)
 
   # Pick a specific combination to compare
   unw_row <- res_unw[res_unw$variable == "color" & res_unw$category == "azul" & res_unw$class == "c1", , drop = FALSE]
@@ -43,7 +43,7 @@ test_that("cluster_carac_quali extra_info drops internal counts", {
   )
   classc <- factor(c("c1", "c1"))
 
-  res <- cluster_carac_quali(dtf, classc, alpha = 1, extra_info = FALSE)
+  res <- cluster_carac_quali(dtf, classc, alpha = 0.99, extra_info = FALSE)
 
   expect_false(any(c("nk", "njk", "n") %in% names(res)))
   expect_true("weight" %in% names(res))
@@ -56,11 +56,11 @@ test_that("cluster_carac_quali handles NA filtering flags", {
   )
   classc <- factor(c("c1", NA, "c2"))
 
-  res_drop <- cluster_carac_quali(dtf, classc, alpha = 1, na_class = FALSE, na_categ = FALSE)
+  res_drop <- cluster_carac_quali(dtf, classc, alpha = 0.99, na_class = FALSE, na_categ = FALSE)
   expect_false(any(is.na(res_drop$category)))
   expect_false(any(is.na(res_drop$class)))
 
-  res_keep <- cluster_carac_quali(dtf, classc, alpha = 1, na_class = TRUE, na_categ = TRUE)
+  res_keep <- cluster_carac_quali(dtf, classc, alpha = 0.99, na_class = TRUE, na_categ = TRUE)
   expect_true(any(is.na(res_keep$category)))
   expect_true(any(is.na(res_keep$class)))
 })
