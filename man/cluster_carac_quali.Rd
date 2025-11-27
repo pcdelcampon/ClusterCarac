@@ -52,8 +52,8 @@ Computes enrichment metrics (statistics, p-value) according to the hypergeometri
 }
 \examples{
 # Classical Titanic example (base R dataset)
-titanic_df <- as.data.frame(Titanic) |>
-  tidyr::uncount(Freq)
+titanic_df <- as.data.frame(Titanic) 
+
 titanic_dtf    <- titanic_df |> dplyr::select(Class, Sex, Age)
 titanic_classc <- titanic_df$Survived
 titanic_wt     <- titanic_df$Freq
