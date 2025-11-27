@@ -32,16 +32,13 @@
 #' Pardo C, Del Campo P (2007). "Combinación de métodos factoriales y de análisis de conglomerados en R: el paquete FactoClass." Revista Colombiana de Estadística, 30(2), 231-245.
 #' @examples
 #' # Classical Titanic example (base R dataset)
-#' library(ClusterCarac)
-#' 
-#' titanic_df <- as.data.frame(Titanic)
-#' 
+#' titanic_df <- as.data.frame(Titanic) |>
+#'   tidyr::uncount(Freq)
 #' titanic_dtf    <- titanic_df |> dplyr::select(Class, Sex, Age)
 #' titanic_classc <- titanic_df$Survived
 #' titanic_wt     <- titanic_df$Freq
-#' 
-#' cluster_carac_quali(titanic_dtf, titanic_classc, wt = titanic_wt alpha = 0.05)
-#' 
+#' cluster_carac_quali(titanic_dtf, titanic_classc, wt = titanic_wt, alpha = 0.05)
+#'
 #' @export
 #' @importFrom dplyr count group_by mutate ungroup transmute arrange filter rename select
 #' @importFrom tidyr pivot_longer
@@ -79,7 +76,7 @@ cluster_carac_quali <-
       cols = tidyselect::everything(),
       names_to = "variable",
       values_to = "category"
-    ) %>%
+    ) |>
       dplyr::mutate(
         classc = rep(classc, each = n_vars),
         wt = rep(wt_vec, each = n_vars)
@@ -92,13 +89,13 @@ cluster_carac_quali <-
       long <- dplyr::filter(long, !is.na(classc))
     }
 
-    dq <- long %>%
-      dplyr::count(variable, category, classc, wt = wt, name = "njk", .drop = FALSE) %>%
-      dplyr::group_by(variable, classc) %>%
-      dplyr::mutate(nk = sum(njk)) %>%
-      dplyr::group_by(variable, category) %>%
-      dplyr::mutate(nj = sum(njk)) %>%
-      dplyr::group_by(variable) %>%
+    dq <- long |>
+      dplyr::count(variable, category, classc, wt = wt, name = "njk", .drop = FALSE) |>
+      dplyr::group_by(variable, classc) |>
+      dplyr::mutate(nk = sum(njk)) |>
+      dplyr::group_by(variable, category) |>
+      dplyr::mutate(nj = sum(njk)) |>
+      dplyr::group_by(variable) |>
       dplyr::mutate(
         n = sum(njk),
         clas_mod = njk / nj,
@@ -114,18 +111,18 @@ cluster_carac_quali <-
           stats::qnorm(p_value / 2, lower.tail = FALSE),
           stats::qnorm(p_value / 2)
         )
-      ) %>%
+      ) |>
       dplyr::ungroup()
 
 
-    dqr <-  dq %>%
+    dqr <-  dq |>
       dplyr::transmute(
         class = classc, variable, category,
         statistic, p_value,
         clas_cat = clas_mod, cat_clas = mod_clas, global = Global,
         n, nj, nk, njk
-      ) %>%
-      dplyr::arrange(class, dplyr::desc(statistic)) %>%
+      ) |>
+      dplyr::arrange(class, dplyr::desc(statistic)) |>
       dplyr::filter(abs(statistic) >= v_lim)
 
     if( !extra_info ){
