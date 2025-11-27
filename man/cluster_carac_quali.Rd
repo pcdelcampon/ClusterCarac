@@ -52,5 +52,6 @@ Computes enrichment metrics (statistics, p-value) acording with Hypergeometric D
 getting the most relevant categories from qualitative variables, optionally using weights and adjusting by NAs.
 }
 \references{
-Lebart, L. and Morineau, A. and Piron, M. (1995) Statisitique exploratoire multidimensionnelle, Paris. Pardo, C.E. et al. (2015). FactoClass: Categorical data analysis for clustering and classification. CRAN Package.
+Lebart, L. and Morineau, A. and Piron, M. (1995) Statisitique exploratoire multidimensionnelle, Paris.
+Pardo C, Del Campo P (2007). “Combinación de métodos factoriales y de análisis de conglomerados en R: el paquete FactoClass.” Revista Colombiana de Estadística, 30(2), 231–245.
 }

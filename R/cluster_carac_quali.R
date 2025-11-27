@@ -27,7 +27,8 @@
 #'   \item `njk`: weighted count for the category-class combination.
 #' }
 #' When `extra_info = FALSE`, returns without `nk`, `njk`, `n` and with `weight` (renamed from `nj`).
-#' @references Lebart, L. and Morineau, A. and Piron, M. (1995) Statisitique exploratoire multidimensionnelle, Paris. Pardo, C.E. et al. (2015). FactoClass: Categorical data analysis for clustering and classification. CRAN Package.
+#' @references Lebart, L. and Morineau, A. and Piron, M. (1995) Statisitique exploratoire multidimensionnelle, Paris. 
+#' Pardo C, Del Campo P (2007). “Combinación de métodos factoriales y de análisis de conglomerados en R: el paquete FactoClass.” Revista Colombiana de Estadística, 30(2), 231–245.
 #' @export
 #' @importFrom dplyr count group_by mutate ungroup transmute arrange filter rename select
 #' @importFrom tidyr pivot_longer
