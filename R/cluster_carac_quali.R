@@ -48,7 +48,7 @@ cluster_carac_quali <-
       filter( abs(statistic) >= v_lim )
 
     if( !extra_info ){
-      dqr <- dqr |> rename(Weight = nj) |> select(-nk,-njk,-n)
+      dqr <- dqr |> rename(weight = nj) |> select(-nk,-njk,-n)
     } 
     
     return(dqr)
