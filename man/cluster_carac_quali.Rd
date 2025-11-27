@@ -51,6 +51,21 @@ When \code{extra_info = FALSE}, returns without \code{nk}, \code{njk}, \code{n} 
 Computes enrichment metrics (statistics, p-value) acording with Hypergeometric Distribution for each cluster or classification,
 getting the most relevant categories from qualitative variables, optionally using weights and adjusting by NAs.
 }
+\examples{
+# Titanic example (base R dataset)
+titanic_df <- as.data.frame(Titanic) |> 
+  tidyr::uncount(Freq) |> 
+  dplyr::mutate(
+    Class = as.factor(Class),
+    Sex   = as.factor(Sex),
+    Age   = as.factor(Age),
+    Survived = as.factor(Survived)
+  )
+dtf    <- titanic_df |> dplyr::select(Class, Sex, Age)
+classc <- titanic_df$Survived
+cluster_carac_quali(dtf, classc, alpha = 0.05)
+
+}
 \references{
 Lebart, L. and Morineau, A. and Piron, M. (1995) Statisitique exploratoire multidimensionnelle, Paris.
 Pardo C, Del Campo P (2007). "Combinación de métodos factoriales y de análisis de conglomerados en R: el paquete FactoClass." Revista Colombiana de Estadística, 30(2), 231-245.
