@@ -1,3 +1,29 @@
+#' Characterize categorical variables by class
+#'
+#' Computes enrichment metrics (V-test, p-value) for each category of each
+#' variable across classes, optionally using weights and filtering NAs.
+#'
+#' @param dtf A data.frame/tibble of categorical predictors (columns).
+#' @param classc A vector of class labels, length `nrow(dtf)`.
+#' @param alpha Significance level in (0,1) used to derive the V-test cutoff.
+#' @param neg Reserved (currently unused).
+#' @param wt Optional numeric vector of weights, length `nrow(dtf)`.
+#' @param na_class Logical; if FALSE, rows with NA in `classc` are dropped.
+#' @param na_categ Logical; if FALSE, rows with NA in any predictor are dropped.
+#' @param extra_info Logical; if FALSE, drops internal counts and renames `nj` to
+#'   `weight` in the output.
+#'
+#' @return A tibble with columns:
+#'   `class`, `variable`, `category`, `statistic` (V-test), `p_value`,
+#'   `clas_cat`, `cat_clas`, `global`, `n`, `nj`, `nk`, `njk`. When
+#'   `extra_info = FALSE`, returns without `nk`, `njk`, `n` and with `weight`.
+#' @references Pardo, C.E. et al. (2015). FactoClass: Categorical data analysis
+#'   for clustering and classification. CRAN Package.
+#' @export
+#' @importFrom dplyr count group_by mutate ungroup transmute arrange filter rename select
+#' @importFrom tidyr pivot_longer
+#' @importFrom tidyselect everything
+#' @importFrom stats phyper qnorm
 cluster_carac_quali <- 
   function( dtf , classc , alpha = 0.05 , neg = TRUE , wt = NULL, na_class = FALSE , na_categ = FALSE, extra_info = TRUE  ){  
     
@@ -5,7 +31,7 @@ cluster_carac_quali <-
     if (!is.data.frame(dtf)) {
       stop("`dtf` must be a data.frame or tibble.")
     }
-    if (!is.numeric(alpha) || length(alpha) != 1 || alpha < 0 || alpha > 1) {
+    if (!is.numeric(alpha) || length(alpha) != 1 || alpha <= 0 || alpha >= 1) {
       stop("`alpha` must be a single numeric value in (0, 1).")
     }
     if (nrow(dtf) != length(classc)) {
@@ -18,8 +44,6 @@ cluster_carac_quali <-
       }
       if (any(wt < 0, na.rm = TRUE)) stop("`wt` cannot contain negative values.")
     }
-
-    
     wt_vec <- if (is.null(wt)) rep(1, nrow(dtf)) else wt
 
     v_lim <- stats::qnorm(1 - alpha/2)
