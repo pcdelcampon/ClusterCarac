@@ -33,6 +33,24 @@ install.packages("remotes")  # if you don't have it
 remotes::install_github("pcdelcampon/ClusterCarac")
 ```
 
+## Quick start
+
+```r
+library(ClusterCarac)
+
+set.seed(123)
+dtf <- data.frame(
+  color = sample(c("rojo", "azul"), 20, replace = TRUE),
+  size  = sample(c("S", "M"), 20, replace = TRUE)
+)
+classc <- sample(c("c1", "c2"), 20, replace = TRUE)
+
+res <- cluster_carac_quali(dtf, classc, alpha = 0.05)
+head(res)
+```
+
+Documentation: once installed, see `?cluster_carac_quali` for parameters and output details.
+
 ## Motivation
 
 This package is inspired by a previous project called [FactoClass](https://cran.r-project.org/web/packages/FactoClass/index.html), developed at the **Universidad Nacional de Colombia** in collaboration with Professor [Campo Elías Pardo](https://www.linkedin.com/in/campo-el%C3%ADas-pardo-5ab19435/) and other contributors. Users of that package often had recurring questions about the characterization functions applied to the clusters produced by the original tool. These questions highlighted the need for clearer and more dedicated methods to describe the groups or segments obtained from clustering or classification procedures.
