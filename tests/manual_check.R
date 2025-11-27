@@ -61,6 +61,8 @@ remotes::install_github("pcdelcampon/ClusterCarac")
 
 library(ClusterCarac)
 
+?cluster_carac_quali
+
 titanic_df     <- as.data.frame(Titanic)
 titanic_dtf    <- titanic_df |> dplyr::select(Class, Sex, Age)
 titanic_classc <- titanic_df$Survived
