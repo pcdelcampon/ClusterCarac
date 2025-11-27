@@ -37,13 +37,21 @@ remotes::install_github("pcdelcampon/ClusterCarac")
 
 ```r
 library(ClusterCarac)
+library(dplyr)
+library(tidyr)
 
-set.seed(123)
-dtf <- data.frame(
-  color = sample(c("rojo", "azul"), 20, replace = TRUE),
-  size  = sample(c("S", "M"), 20, replace = TRUE)
-)
-classc <- sample(c("c1", "c2"), 20, replace = TRUE)
+# Example with base Titanic dataset
+Titanic_df <- as.data.frame(Titanic) |>
+  tidyr::uncount(Freq) |>
+  mutate(
+    Class    = as.factor(Class),
+    Sex      = as.factor(Sex),
+    Age      = as.factor(Age),
+    Survived = as.factor(Survived)
+  )
+
+dtf    <- Titanic_df |> select(Class, Sex, Age)
+classc <- Titanic_df$Survived
 
 res <- cluster_carac_quali(dtf, classc, alpha = 0.05)
 head(res)
@@ -60,3 +68,4 @@ For this reason, I decided to create this new set of tools, focusing specificall
 ## Author
 
 Pedro Cesar Del Campo Neira · pcdelcampon@gmail.com · [Personal site](https://pcdelcampon.github.io/mywebquarto/)
+

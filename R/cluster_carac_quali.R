@@ -31,18 +31,14 @@
 #' @references Lebart, L. and Morineau, A. and Piron, M. (1995) Statisitique exploratoire multidimensionnelle, Paris. 
 #' Pardo C, Del Campo P (2007). "Combinación de métodos factoriales y de análisis de conglomerados en R: el paquete FactoClass." Revista Colombiana de Estadística, 30(2), 231-245.
 #' @examples
-#' # Titanic example (base R dataset)
-#' titanic_df <- as.data.frame(Titanic) |> 
-#'   tidyr::uncount(Freq) |> 
-#'   dplyr::mutate(
-#'     Class = as.factor(Class),
-#'     Sex   = as.factor(Sex),
-#'     Age   = as.factor(Age),
-#'     Survived = as.factor(Survived)
-#'   )
-#' dtf    <- titanic_df |> dplyr::select(Class, Sex, Age)
-#' classc <- titanic_df$Survived
-#' cluster_carac_quali(dtf, classc, alpha = 0.05)
+#' # Classical Titanic example (base R dataset)
+#' titanic_df <- as.data.frame(Titanic)
+#' 
+#' titanic_dtf    <- titanic_df |> dplyr::select(Class, Sex, Age)
+#' titanic_classc <- titanic_df$Survived
+#' titanic_wt     <- titanic_df$Freq
+#' 
+#' cluster_carac_quali(titanic_dtf, titanic_classc, wt = titanic_wt alpha = 0.05)
 #' 
 #' @export
 #' @importFrom dplyr count group_by mutate ungroup transmute arrange filter rename select
