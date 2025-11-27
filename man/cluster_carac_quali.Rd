@@ -15,7 +15,7 @@ cluster_carac_quali(
 )
 }
 \arguments{
-\item{dtf}{A data.frame/tibble of qualitative predictors variables (columns).}
+\item{dtf}{A data.frame/tibble of qualitative predictor variables (columns).}
 
 \item{classc}{A vector of class labels, length \code{nrow(dtf)}.}
 
@@ -23,9 +23,9 @@ cluster_carac_quali(
 
 \item{wt}{Optional numeric vector of weights, length \code{nrow(dtf)}.}
 
-\item{na_class}{Logical; if TRUE, values with NA in \code{classc} are dropped; if FALSE, NA values are considered a new cluster or clasification. By default is TRUE.}
+\item{na_class}{Logical; if TRUE, values with NA in \code{classc} are dropped; if FALSE, NA values are considered a new cluster or classification. Default TRUE.}
 
-\item{na_categ}{Logical; if TRUE, values with NA in any qualitative predictor variable are dropped. if FALSE, NA values are considered a new category. By default is TRUE.}
+\item{na_categ}{Logical; if TRUE, values with NA in any qualitative predictor variable are dropped; if FALSE, NA values are considered a new category. Default TRUE.}
 
 \item{extra_info}{Logical; if FALSE, drops internal counts and renames \code{nj} to \code{weight} in the output.}
 }
@@ -33,14 +33,14 @@ cluster_carac_quali(
 A tibble with columns:
 \itemize{
 \item \code{class}: cluster or classification.
-\item \code{variable}: qualitative variables.
-\item \code{category}: categories from qualitative variables.
-\item \code{statistic}: Value test statistic (signed z-score).
+\item \code{variable}: qualitative variable name.
+\item \code{category}: category of the qualitative variable.
+\item \code{statistic}: V-test statistic (signed z-score).
 \item \code{p_value}: p-value associated with the statistic.
 \item \code{clas_cat}: proportion of the category belonging to the class (njk/nj).
 \item \code{cat_clas}: proportion of the class made of that category (njk/nk).
 \item \code{global}: global proportion of the category (nj/n).
-\item \code{n}: total weighted count, it could vary if NA options are TRUE.
+\item \code{n}: total weighted count (may vary if NA options are TRUE).
 \item \code{nj}: weighted count for the category.
 \item \code{nk}: weighted count for the class (cluster or classification).
 \item \code{njk}: weighted count for the category-class combination.
@@ -48,8 +48,7 @@ A tibble with columns:
 When \code{extra_info = FALSE}, returns without \code{nk}, \code{njk}, \code{n} and with \code{weight} (renamed from \code{nj}).
 }
 \description{
-Computes enrichment metrics (statistics, p-value) acording with Hypergeometric Distribution for each cluster or classification,
-getting the most relevant categories from qualitative variables, optionally using weights and adjusting by NAs.
+Computes enrichment metrics (statistics, p-value) according to the hypergeometric distribution for each cluster or classification, getting the most relevant categories from qualitative variables, optionally using weights and adjusting for NAs.
 }
 \examples{
 # Classical Titanic example (base R dataset)
@@ -62,8 +61,8 @@ cluster_carac_quali(titanic_dtf, titanic_classc, wt = titanic_wt, alpha = 0.05)
 
 }
 \references{
-Lebart, L. and Morineau, A. and Piron, M. (1995) Statisitique exploratoire multidimensionnelle, Paris.
-Pardo C, Del Campo P (2007). "Combinación de métodos factoriales y de análisis de conglomerados en R: el paquete FactoClass." Revista Colombiana de Estadística, 30(2), 231-245.
+Lebart, L., Morineau, A., & Piron, M. (1995). Statistique exploratoire multidimensionnelle. Paris.
+Pardo C., Del Campo P. (2007). "Combinacion de metodos factoriales y de analisis de conglomerados en R: el paquete FactoClass." Revista Colombiana de Estadistica, 30(2), 231-245.
 }
 \author{
 Pedro Cesar Del Campo Neira (\email{pcdelcampon@gmail.com})

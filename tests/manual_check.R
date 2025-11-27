@@ -54,3 +54,16 @@ do.call( rbind , as.list(cluster.carac(DB.act,DB.function,"ca",2.0)) ) %>%
   separate( all_vars , into = c("class", "variable", "category") )
 cat("\n*** ClusterCarac \n")
 cluster_carac_quali( DogBreeds |> select(-FUNC) , DogBreeds$FUNC , 0.05 , extra_info = FALSE )
+
+
+install.packages("remotes")  # if you don't have it
+remotes::install_github("pcdelcampon/ClusterCarac")
+
+library(ClusterCarac)
+
+titanic_df     <- as.data.frame(Titanic)
+titanic_dtf    <- titanic_df |> dplyr::select(Class, Sex, Age)
+titanic_classc <- titanic_df$Survived
+titanic_wt     <- titanic_df$Freq
+
+cluster_carac_quali(titanic_dtf, titanic_classc, wt = titanic_wt, alpha = 0.05)

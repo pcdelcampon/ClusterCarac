@@ -1,35 +1,34 @@
 #' Characterize categorical variables by class
 #'
-#' Computes enrichment metrics (statistics, p-value) acording with Hypergeometric Distribution for each cluster or classification, 
-#' getting the most relevant categories from qualitative variables, optionally using weights and adjusting by NAs.
+#' Computes enrichment metrics (statistics, p-value) according to the hypergeometric distribution for each cluster or classification, getting the most relevant categories from qualitative variables, optionally using weights and adjusting for NAs.
 #'
-#' @param dtf A data.frame/tibble of qualitative predictors variables (columns).
+#' @param dtf A data.frame/tibble of qualitative predictor variables (columns).
 #' @param classc A vector of class labels, length `nrow(dtf)`.
 #' @param alpha Significance level in (0,1) used to derive the test value cutoff.
 #' @param wt Optional numeric vector of weights, length `nrow(dtf)`.
-#' @param na_class Logical; if TRUE, values with NA in `classc` are dropped; if FALSE, NA values are considered a new cluster or clasification. By default is TRUE.
-#' @param na_categ Logical; if TRUE, values with NA in any qualitative predictor variable are dropped. if FALSE, NA values are considered a new category. By default is TRUE.
+#' @param na_class Logical; if TRUE, values with NA in `classc` are dropped; if FALSE, NA values are considered a new cluster or classification. Default TRUE.
+#' @param na_categ Logical; if TRUE, values with NA in any qualitative predictor variable are dropped; if FALSE, NA values are considered a new category. Default TRUE.
 #' @param extra_info Logical; if FALSE, drops internal counts and renames `nj` to `weight` in the output.
 #'
 #' @return A tibble with columns:
 #' \itemize{
 #'   \item `class`: cluster or classification.
-#'   \item `variable`: qualitative variables.
-#'   \item `category`: categories from qualitative variables.
-#'   \item `statistic`: Value test statistic (signed z-score).
+#'   \item `variable`: qualitative variable name.
+#'   \item `category`: category of the qualitative variable.
+#'   \item `statistic`: V-test statistic (signed z-score).
 #'   \item `p_value`: p-value associated with the statistic.
 #'   \item `clas_cat`: proportion of the category belonging to the class (njk/nj).
 #'   \item `cat_clas`: proportion of the class made of that category (njk/nk).
 #'   \item `global`: global proportion of the category (nj/n).
-#'   \item `n`: total weighted count, it could vary if NA options are TRUE.
+#'   \item `n`: total weighted count (may vary if NA options are TRUE).
 #'   \item `nj`: weighted count for the category.
 #'   \item `nk`: weighted count for the class (cluster or classification).
 #'   \item `njk`: weighted count for the category-class combination.
 #' }
 #' When `extra_info = FALSE`, returns without `nk`, `njk`, `n` and with `weight` (renamed from `nj`).
 #' @author Pedro Cesar Del Campo Neira (\email{pcdelcampon@gmail.com})
-#' @references Lebart, L. and Morineau, A. and Piron, M. (1995) Statisitique exploratoire multidimensionnelle, Paris. 
-#' Pardo C, Del Campo P (2007). "Combinación de métodos factoriales y de análisis de conglomerados en R: el paquete FactoClass." Revista Colombiana de Estadística, 30(2), 231-245.
+#' @references Lebart, L., Morineau, A., & Piron, M. (1995). Statistique exploratoire multidimensionnelle. Paris.
+#' Pardo C., Del Campo P. (2007). "Combinacion de metodos factoriales y de analisis de conglomerados en R: el paquete FactoClass." Revista Colombiana de Estadistica, 30(2), 231-245.
 #' @examples
 #' # Classical Titanic example (base R dataset)
 #' titanic_df <- as.data.frame(Titanic) |>
@@ -44,8 +43,6 @@
 #' @importFrom tidyr pivot_longer
 #' @importFrom tidyselect everything
 #' @importFrom stats phyper qnorm
-
-
 cluster_carac_quali <- 
   function( dtf , classc , alpha = 0.05, wt = NULL, na_class = TRUE , na_categ = TRUE, extra_info = TRUE  ){  
     
@@ -53,7 +50,7 @@ cluster_carac_quali <-
     if (!is.data.frame(dtf)) {
       stop("`dtf` must be a data.frame or tibble.")
     }
-    if (!is.numeric(alpha) || length(alpha) != 1 || alpha < 0 || alpha > 1) {
+    if (!is.numeric(alpha) || length(alpha) != 1 || alpha <= 0 || alpha >= 1) {
       stop("`alpha` must be a single numeric value in (0, 1).")
     }
     if (nrow(dtf) != length(classc)) {
