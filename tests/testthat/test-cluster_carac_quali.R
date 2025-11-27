@@ -11,9 +11,9 @@ test_that("cluster_carac_quali returns tibble with expected cols", {
   expect_s3_class(res, "tbl_df")
   expect_true(all(c(
     "class", "variable", "category",
-    "test_value", "p_value",
+    "statistic", "p_value",
     "clas_cat", "cat_clas", "global",
-    "nj", "nk", "njk"
+    "nj", "nk", "njk", "n"
   ) %in% names(res)))
 })
 
@@ -45,7 +45,7 @@ test_that("cluster_carac_quali extra_info drops internal counts", {
 
   res <- cluster_carac_quali(dtf, classc, alpha = 1, extra_info = FALSE)
 
-  expect_false(any(c("nk", "njk") %in% names(res)))
+  expect_false(any(c("nk", "njk", "n") %in% names(res)))
   expect_true("Weight" %in% names(res))
 })
 

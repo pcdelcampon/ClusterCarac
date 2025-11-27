@@ -44,8 +44,8 @@ cluster_carac_quali <-
       transmute( class = classc    , variable , category ,
                  statistic = V_test, p_value = p_value,
                  clas_cat = clas_mod , cat_clas = mod_clas , global = Global , n = n , nj = nj , nk , njk ) %>%
-      arrange( class , desc( test_value )  ) %>%
-      filter( abs(test_value) >= v_lim )
+      arrange( class , desc( statistic )  ) %>%
+      filter( abs(statistic) >= v_lim )
 
     if( !extra_info ){
       dqr <- dqr |> rename(Weight = nj) |> select(-nk,-njk,-n)
