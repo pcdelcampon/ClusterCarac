@@ -2,7 +2,7 @@
 % Please edit documentation in R/cluster_carac_quali.R
 \name{cluster_carac_quali}
 \alias{cluster_carac_quali}
-\title{Cluster or classification Characterization by qualitative Variables}
+\title{Characterize categorical variables by class}
 \usage{
 cluster_carac_quali(
   dtf,
@@ -34,9 +34,9 @@ A tibble with columns:
 \itemize{
 \item \code{class}: cluster or classification.
 \item \code{variable}: qualitative variables.
-\item \code{category}: categories from qualitative predictor variables.
-\item \code{statistic}: V-test statistic (signed z-score).
-\item \code{p_value}: p-value associated with the V-test.
+\item \code{category}: categories from qualitative variables.
+\item \code{statistic}: Value test statistic (signed z-score).
+\item \code{p_value}: p-value associated with the statistic.
 \item \code{clas_cat}: proportion of the category belonging to the class (njk/nj).
 \item \code{cat_clas}: proportion of the class made of that category (njk/nk).
 \item \code{global}: global proportion of the category (nj/n).
@@ -53,5 +53,8 @@ getting the most relevant categories from qualitative variables, optionally usin
 }
 \references{
 Lebart, L. and Morineau, A. and Piron, M. (1995) Statisitique exploratoire multidimensionnelle, Paris.
-Pardo C, Del Campo P (2007). “Combinación de métodos factoriales y de análisis de conglomerados en R: el paquete FactoClass.” Revista Colombiana de Estadística, 30(2), 231–245.
+Pardo C, Del Campo P (2007). "Combinación de métodos factoriales y de análisis de conglomerados en R: el paquete FactoClass." Revista Colombiana de Estadística, 30(2), 231-245.
+}
+\author{
+Pedro Cesar Del Campo Neira (\email{pcdelcampon@gmail.com})
 }

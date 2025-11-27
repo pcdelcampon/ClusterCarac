@@ -1,4 +1,4 @@
-#' Cluster or classification Characterization by qualitative Variables
+#' Characterize categorical variables by class
 #'
 #' Computes enrichment metrics (statistics, p-value) acording with Hypergeometric Distribution for each cluster or classification, 
 #' getting the most relevant categories from qualitative variables, optionally using weights and adjusting by NAs.
@@ -15,9 +15,9 @@
 #' \itemize{
 #'   \item `class`: cluster or classification.
 #'   \item `variable`: qualitative variables.
-#'   \item `category`: categories from qualitative predictor variables.
-#'   \item `statistic`: V-test statistic (signed z-score).
-#'   \item `p_value`: p-value associated with the V-test.
+#'   \item `category`: categories from qualitative variables.
+#'   \item `statistic`: Value test statistic (signed z-score).
+#'   \item `p_value`: p-value associated with the statistic.
 #'   \item `clas_cat`: proportion of the category belonging to the class (njk/nj).
 #'   \item `cat_clas`: proportion of the class made of that category (njk/nk).
 #'   \item `global`: global proportion of the category (nj/n).
@@ -27,8 +27,9 @@
 #'   \item `njk`: weighted count for the category-class combination.
 #' }
 #' When `extra_info = FALSE`, returns without `nk`, `njk`, `n` and with `weight` (renamed from `nj`).
+#' @author Pedro Cesar Del Campo Neira (\email{pcdelcampon@gmail.com})
 #' @references Lebart, L. and Morineau, A. and Piron, M. (1995) Statisitique exploratoire multidimensionnelle, Paris. 
-#' Pardo C, Del Campo P (2007). “Combinación de métodos factoriales y de análisis de conglomerados en R: el paquete FactoClass.” Revista Colombiana de Estadística, 30(2), 231–245.
+#' Pardo C, Del Campo P (2007). "Combinación de métodos factoriales y de análisis de conglomerados en R: el paquete FactoClass." Revista Colombiana de Estadística, 30(2), 231-245.
 #' @export
 #' @importFrom dplyr count group_by mutate ungroup transmute arrange filter rename select
 #' @importFrom tidyr pivot_longer
@@ -43,7 +44,7 @@ cluster_carac_quali <-
     if (!is.data.frame(dtf)) {
       stop("`dtf` must be a data.frame or tibble.")
     }
-    if (!is.numeric(alpha) || length(alpha) != 1 || alpha <= 0 || alpha >= 1) {
+    if (!is.numeric(alpha) || length(alpha) != 1 || alpha < 0 || alpha > 1) {
       stop("`alpha` must be a single numeric value in (0, 1).")
     }
     if (nrow(dtf) != length(classc)) {
