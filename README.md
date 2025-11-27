@@ -35,26 +35,18 @@ remotes::install_github("pcdelcampon/ClusterCarac")
 
 ## Quick start
 
+Classical Titanic example (base R dataset)
+
 ```r
 library(ClusterCarac)
-library(dplyr)
-library(tidyr)
 
-# Example with base Titanic dataset
-Titanic_df <- as.data.frame(Titanic) |>
-  tidyr::uncount(Freq) |>
-  mutate(
-    Class    = as.factor(Class),
-    Sex      = as.factor(Sex),
-    Age      = as.factor(Age),
-    Survived = as.factor(Survived)
-  )
+titanic_df <- as.data.frame(Titanic)
 
-dtf    <- Titanic_df |> select(Class, Sex, Age)
-classc <- Titanic_df$Survived
+titanic_dtf    <- titanic_df |> dplyr::select(Class, Sex, Age)
+titanic_classc <- titanic_df$Survived
+titanic_wt     <- titanic_df$Freq
 
-res <- cluster_carac_quali(dtf, classc, alpha = 0.05)
-head(res)
+cluster_carac_quali(titanic_dtf, titanic_classc, wt = titanic_wt alpha = 0.05)
 ```
 
 Documentation: once installed, see `?cluster_carac_quali` for parameters and output details.

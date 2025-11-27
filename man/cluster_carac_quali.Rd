@@ -53,6 +53,8 @@ getting the most relevant categories from qualitative variables, optionally usin
 }
 \examples{
 # Classical Titanic example (base R dataset)
+library(ClusterCarac)
+
 titanic_df <- as.data.frame(Titanic)
 
 titanic_dtf    <- titanic_df |> dplyr::select(Class, Sex, Age)

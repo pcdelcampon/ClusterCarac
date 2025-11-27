@@ -32,6 +32,8 @@
 #' Pardo C, Del Campo P (2007). "Combinación de métodos factoriales y de análisis de conglomerados en R: el paquete FactoClass." Revista Colombiana de Estadística, 30(2), 231-245.
 #' @examples
 #' # Classical Titanic example (base R dataset)
+#' library(ClusterCarac)
+#' 
 #' titanic_df <- as.data.frame(Titanic)
 #' 
 #' titanic_dtf    <- titanic_df |> dplyr::select(Class, Sex, Age)
