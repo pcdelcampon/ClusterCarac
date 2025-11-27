@@ -44,6 +44,5 @@ Computes enrichment metrics (V-test, p-value) for each category of each
 variable across classes, optionally using weights and filtering NAs.
 }
 \references{
-Pardo, C.E. et al. (2015). FactoClass: Categorical data analysis
-for clustering and classification. CRAN Package.
+Lebart, L. and Morineau, A. and Piron, M. (1995) Statisitique exploratoire multidimensionnelle, Paris. Pardo, C.E. et al. (2015). FactoClass: Categorical data analysis for clustering and classification. CRAN Package.
 }

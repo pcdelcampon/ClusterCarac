@@ -17,8 +17,7 @@
 #'   `class`, `variable`, `category`, `statistic` (V-test), `p_value`,
 #'   `clas_cat`, `cat_clas`, `global`, `n`, `nj`, `nk`, `njk`. When
 #'   `extra_info = FALSE`, returns without `nk`, `njk`, `n` and with `weight`.
-#' @references Pardo, C.E. et al. (2015). FactoClass: Categorical data analysis
-#'   for clustering and classification. CRAN Package.
+#' @references Lebart, L. and Morineau, A. and Piron, M. (1995) Statisitique exploratoire multidimensionnelle, Paris. Pardo, C.E. et al. (2015). FactoClass: Categorical data analysis for clustering and classification. CRAN Package.
 #' @export
 #' @importFrom dplyr count group_by mutate ungroup transmute arrange filter rename select
 #' @importFrom tidyr pivot_longer
