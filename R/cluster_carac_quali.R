@@ -1,28 +1,42 @@
-#' Characterize categorical variables by class
+#' Cluster or classification Characterization by qualitative Variables
 #'
-#' Computes enrichment metrics (V-test, p-value) for each category of each
-#' variable across classes, optionally using weights and filtering NAs.
+#' Computes enrichment metrics (statistics, p-value) acording with Hypergeometric Distribution for each cluster or classification, 
+#' getting the most relevant categories from qualitative variables, optionally using weights and adjusting by NAs.
 #'
-#' @param dtf A data.frame/tibble of categorical predictors (columns).
+#' @param dtf A data.frame/tibble of qualitative predictors variables (columns).
 #' @param classc A vector of class labels, length `nrow(dtf)`.
 #' @param alpha Significance level in (0,1) used to derive the V-test cutoff.
 #' @param neg Reserved (currently unused).
 #' @param wt Optional numeric vector of weights, length `nrow(dtf)`.
 #' @param na_class Logical; if FALSE, rows with NA in `classc` are dropped.
-#' @param na_categ Logical; if FALSE, rows with NA in any predictor are dropped.
+#' @param na_categ Logical; if FALSE, rows with NA in any qualitative predictor variable are dropped.
 #' @param extra_info Logical; if FALSE, drops internal counts and renames `nj` to
 #'   `weight` in the output.
 #'
 #' @return A tibble with columns:
-#'   `class`, `variable`, `category`, `statistic` (V-test), `p_value`,
-#'   `clas_cat`, `cat_clas`, `global`, `n`, `nj`, `nk`, `njk`. When
-#'   `extra_info = FALSE`, returns without `nk`, `njk`, `n` and with `weight`.
+#' \itemize{
+#'   \item `class`: class label.
+#'   \item `variable`: predictor name.
+#'   \item `category`: category of the predictor.
+#'   \item `statistic`: V-test statistic (signed z-score).
+#'   \item `p_value`: p-value associated with the V-test.
+#'   \item `clas_cat`: proportion of the category belonging to the class (njk/nj).
+#'   \item `cat_clas`: proportion of the class made of that category (njk/nk).
+#'   \item `global`: global proportion of the category (nj/n).
+#'   \item `n`: total weighted count for the variable.
+#'   \item `nj`: weighted count for the category.
+#'   \item `nk`: weighted count for the class within the variable.
+#'   \item `njk`: weighted count for the category-class combination.
+#' }
+#' When `extra_info = FALSE`, returns without `nk`, `njk`, `n` and with `weight` (renamed from `nj`).
 #' @references Lebart, L. and Morineau, A. and Piron, M. (1995) Statisitique exploratoire multidimensionnelle, Paris. Pardo, C.E. et al. (2015). FactoClass: Categorical data analysis for clustering and classification. CRAN Package.
 #' @export
 #' @importFrom dplyr count group_by mutate ungroup transmute arrange filter rename select
 #' @importFrom tidyr pivot_longer
 #' @importFrom tidyselect everything
 #' @importFrom stats phyper qnorm
+
+
 cluster_carac_quali <- 
   function( dtf , classc , alpha = 0.05 , neg = TRUE , wt = NULL, na_class = FALSE , na_categ = FALSE, extra_info = TRUE  ){  
     

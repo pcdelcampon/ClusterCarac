@@ -2,7 +2,7 @@
 % Please edit documentation in R/cluster_carac_quali.R
 \name{cluster_carac_quali}
 \alias{cluster_carac_quali}
-\title{Characterize categorical variables by class}
+\title{Cluster or classification Characterization by qualitative Variables}
 \usage{
 cluster_carac_quali(
   dtf,
@@ -16,7 +16,7 @@ cluster_carac_quali(
 )
 }
 \arguments{
-\item{dtf}{A data.frame/tibble of categorical predictors (columns).}
+\item{dtf}{A data.frame/tibble of qualitative predictors variables (columns).}
 
 \item{classc}{A vector of class labels, length \code{nrow(dtf)}.}
 
@@ -28,20 +28,32 @@ cluster_carac_quali(
 
 \item{na_class}{Logical; if FALSE, rows with NA in \code{classc} are dropped.}
 
-\item{na_categ}{Logical; if FALSE, rows with NA in any predictor are dropped.}
+\item{na_categ}{Logical; if FALSE, rows with NA in any qualitative predictor variable are dropped.}
 
 \item{extra_info}{Logical; if FALSE, drops internal counts and renames \code{nj} to
 \code{weight} in the output.}
 }
 \value{
 A tibble with columns:
-\code{class}, \code{variable}, \code{category}, \code{statistic} (V-test), \code{p_value},
-\code{clas_cat}, \code{cat_clas}, \code{global}, \code{n}, \code{nj}, \code{nk}, \code{njk}. When
-\code{extra_info = FALSE}, returns without \code{nk}, \code{njk}, \code{n} and with \code{weight}.
+\itemize{
+\item \code{class}: class label.
+\item \code{variable}: predictor name.
+\item \code{category}: category of the predictor.
+\item \code{statistic}: V-test statistic (signed z-score).
+\item \code{p_value}: p-value associated with the V-test.
+\item \code{clas_cat}: proportion of the category belonging to the class (njk/nj).
+\item \code{cat_clas}: proportion of the class made of that category (njk/nk).
+\item \code{global}: global proportion of the category (nj/n).
+\item \code{n}: total weighted count for the variable.
+\item \code{nj}: weighted count for the category.
+\item \code{nk}: weighted count for the class within the variable.
+\item \code{njk}: weighted count for the category-class combination.
+}
+When \code{extra_info = FALSE}, returns without \code{nk}, \code{njk}, \code{n} and with \code{weight} (renamed from \code{nj}).
 }
 \description{
-Computes enrichment metrics (V-test, p-value) for each category of each
-variable across classes, optionally using weights and filtering NAs.
+Computes enrichment metrics (statistics, p-value) acording with Hypergeometric Distribution for each cluster or classification,
+getting the most relevant categories from qualitative variables, optionally using weights and adjusting by NAs.
 }
 \references{
 Lebart, L. and Morineau, A. and Piron, M. (1995) Statisitique exploratoire multidimensionnelle, Paris. Pardo, C.E. et al. (2015). FactoClass: Categorical data analysis for clustering and classification. CRAN Package.
