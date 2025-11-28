@@ -69,3 +69,4 @@ titanic_classc <- titanic_df$Survived
 titanic_wt     <- titanic_df$Freq
 
 cluster_carac_quali(titanic_dtf, titanic_classc, wt = titanic_wt, alpha = 0.05)
+ 
