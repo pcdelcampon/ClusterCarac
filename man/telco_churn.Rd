@@ -31,6 +31,7 @@ A CSV file with 7,043 rows and 21 columns:
 }
 }
 \source{
+Kimathi Newton, "Telco Customer Churn" dataset, mirrored from
 \url{https://raw.githubusercontent.com/KimathiNewton/Telco-Customer-Churn/refs/heads/master/Datasets/telco_churn.csv}
 }
 \description{

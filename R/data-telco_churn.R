@@ -28,7 +28,8 @@
 #'   \item{TotalCharges}{Total charges (numeric).}
 #'   \item{Churn}{Churn flag (True/False).}
 #' }
-#' @source \url{https://raw.githubusercontent.com/KimathiNewton/Telco-Customer-Churn/refs/heads/master/Datasets/telco_churn.csv}
+#' @source Kimathi Newton, "Telco Customer Churn" dataset, mirrored from
+#'   \url{https://raw.githubusercontent.com/KimathiNewton/Telco-Customer-Churn/refs/heads/master/Datasets/telco_churn.csv}
 #' @examples
 #' path <- system.file("extdata", "telco_churn.csv", package = "ClusterCarac")
 #' if (file.exists(path)) {
