@@ -3,41 +3,50 @@
 \docType{data}
 \name{telco_churn}
 \alias{telco_churn}
-\title{Telco Customer Churn (CSV)}
+\title{Telco customer churn (Vodafone case study)}
 \format{
-A CSV file with 7,043 rows and 21 columns:
+A CSV file with 7,043 rows and 21 variables:
 \describe{
-\item{customerID}{Customer identifier.}
-\item{gender}{Customer gender (Female/Male).}
-\item{SeniorCitizen}{Logical indicator for senior citizen.}
-\item{Partner}{Logical indicator for having a partner.}
-\item{Dependents}{Logical indicator for dependents.}
-\item{tenure}{Months the customer has stayed with the company.}
-\item{PhoneService}{Logical indicator for phone service.}
-\item{MultipleLines}{Multiple lines (Yes/No/empty).}
-\item{InternetService}{Internet service type (DSL/Fiber optic/None).}
-\item{OnlineSecurity}{Logical indicator for online security.}
-\item{OnlineBackup}{Logical indicator for online backup.}
-\item{DeviceProtection}{Logical indicator for device protection.}
-\item{TechSupport}{Logical indicator for tech support.}
-\item{StreamingTV}{Logical indicator for streaming TV.}
-\item{StreamingMovies}{Logical indicator for streaming movies.}
-\item{Contract}{Contract type (Month-to-month/One year/Two year).}
-\item{PaperlessBilling}{Logical indicator for paperless billing.}
-\item{PaymentMethod}{Payment method.}
-\item{MonthlyCharges}{Monthly charges (numeric).}
-\item{TotalCharges}{Total charges (numeric).}
-\item{Churn}{Churn flag (True/False).}
+  \item{customerID}{Customer identifier.}
+  \item{gender}{Male or Female.}
+  \item{SeniorCitizen}{Whether the customer is a senior citizen.}
+  \item{Partner}{Customer has a partner (Yes/No).}
+  \item{Dependents}{Customer has dependents (Yes/No).}
+  \item{tenure}{Number of months the customer has stayed with the company.}
+  \item{PhoneService}{Customer has a phone service (Yes/No).}
+  \item{MultipleLines}{Whether the customer has multiple lines.}
+  \item{InternetService}{Internet provider (DSL, Fiber Optic, No).}
+  \item{OnlineSecurity}{Customer has online security (Yes/No/No Internet).}
+  \item{OnlineBackup}{Customer has online backup (Yes/No/No Internet).}
+  \item{DeviceProtection}{Customer has device protection (Yes/No/No internet service).}
+  \item{TechSupport}{Customer has tech support (Yes/No/No internet).}
+  \item{StreamingTV}{Customer has streaming TV (Yes/No/No internet service).}
+  \item{StreamingMovies}{Customer has streaming movies (Yes/No/No Internet service).}
+  \item{Contract}{Contract term (Month-to-month, One year, Two year).}
+  \item{PaperlessBilling}{Customer has paperless billing (Yes/No).}
+  \item{PaymentMethod}{Payment method (Electronic check, Mailed check, Bank transfer automatic, Credit card automatic).}
+  \item{MonthlyCharges}{Amount charged to the customer monthly.}
+  \item{TotalCharges}{Total amount charged to the customer.}
+  \item{Churn}{Whether the customer churned (Yes/No).}
 }
 }
 \source{
-Kimathi Newton, "Telco Customer Churn" dataset, mirrored from
-\url{https://raw.githubusercontent.com/KimathiNewton/Telco-Customer-Churn/refs/heads/master/Datasets/telco_churn.csv}
+Kimathi Newton, Telco Customer Churn (Vodafone case study):
+\url{https://github.com/KimathiNewton/Telco-Customer-Churn}
 }
 \description{
-Raw Telco customer churn data (CSV) bundled in \code{inst/extdata}. Use
-\code{system.file("extdata", "telco_churn.csv", package = "ClusterCarac")} to get
-the path and read it with your preferred CSV reader.
+Customer-level attributes and churn flag from a Vodafone churn study. The goal
+is to estimate churn probability, uncover the factors that drive it, and
+translate those insights into actionable retention and loyalty strategies
+for marketing, sales, and product teams.
+}
+\details{
+The churn (attrition) problem aims to explain why and when a customer leaves a
+service. This dataset is used to identify key churn indicators, quantify their
+impact, segment risk profiles, and propose targeted retention tactics for
+marketing and sales teams. It also supports model validation, benchmarking of
+intervention strategies over time, and crafting data-backed business cases for
+customer success initiatives.
 }
 \examples{
 path <- system.file("extdata", "telco_churn.csv", package = "ClusterCarac")
