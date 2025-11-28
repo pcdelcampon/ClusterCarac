@@ -13,7 +13,7 @@
 #' intervention strategies over time, and crafting data-backed business cases for
 #' customer success initiatives.
 #'
-#' @format A CSV file with 7,043 rows and 21 variables:
+#' @format A CSV file with 5,043 rows and 21 variables:
 #' \describe{
 #'   \item{customerID}{Customer identifier.}
 #'   \item{gender}{Male or Female.}
@@ -41,12 +41,7 @@
 #' @source Kimathi Newton, Telco Customer Churn (Vodafone case study):
 #'   \url{https://github.com/KimathiNewton/Telco-Customer-Churn}
 #'
-#' @examples
-#' path <- system.file("extdata", "telco_churn.csv", package = "ClusterCarac")
-#' if (file.exists(path)) {
-#'   telco_churn <- read.csv(path)
-#'   head(telco_churn)
-#' }
+#' @usage data(telco_churn)
 #' @keywords datasets
 #' @name telco_churn
 #' @docType data

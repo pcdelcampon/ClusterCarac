@@ -17,6 +17,6 @@ data("telco_churn", package = "ClusterCarac")
 ?telco_churn
 
 # Treat blank strings as NA for convenience in manual checks
-telco_churn[telco_churn == "" | telco_churn == " "] <- NA
+#telco_churn[telco_churn == "" | telco_churn == " "] <- NA
 
-head(telco_churn)
+telco_churn

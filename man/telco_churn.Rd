@@ -5,34 +5,37 @@
 \alias{telco_churn}
 \title{Telco customer churn (Vodafone case study)}
 \format{
-A CSV file with 7,043 rows and 21 variables:
+A CSV file with 5,043 rows and 21 variables:
 \describe{
-  \item{customerID}{Customer identifier.}
-  \item{gender}{Male or Female.}
-  \item{SeniorCitizen}{Whether the customer is a senior citizen.}
-  \item{Partner}{Customer has a partner (Yes/No).}
-  \item{Dependents}{Customer has dependents (Yes/No).}
-  \item{tenure}{Number of months the customer has stayed with the company.}
-  \item{PhoneService}{Customer has a phone service (Yes/No).}
-  \item{MultipleLines}{Whether the customer has multiple lines.}
-  \item{InternetService}{Internet provider (DSL, Fiber Optic, No).}
-  \item{OnlineSecurity}{Customer has online security (Yes/No/No Internet).}
-  \item{OnlineBackup}{Customer has online backup (Yes/No/No Internet).}
-  \item{DeviceProtection}{Customer has device protection (Yes/No/No internet service).}
-  \item{TechSupport}{Customer has tech support (Yes/No/No internet).}
-  \item{StreamingTV}{Customer has streaming TV (Yes/No/No internet service).}
-  \item{StreamingMovies}{Customer has streaming movies (Yes/No/No Internet service).}
-  \item{Contract}{Contract term (Month-to-month, One year, Two year).}
-  \item{PaperlessBilling}{Customer has paperless billing (Yes/No).}
-  \item{PaymentMethod}{Payment method (Electronic check, Mailed check, Bank transfer automatic, Credit card automatic).}
-  \item{MonthlyCharges}{Amount charged to the customer monthly.}
-  \item{TotalCharges}{Total amount charged to the customer.}
-  \item{Churn}{Whether the customer churned (Yes/No).}
+\item{customerID}{Customer identifier.}
+\item{gender}{Male or Female.}
+\item{SeniorCitizen}{Whether the customer is a senior citizen.}
+\item{Partner}{Customer has a partner (Yes/No).}
+\item{Dependents}{Customer has dependents (Yes/No).}
+\item{tenure}{Number of months the customer has stayed with the company.}
+\item{PhoneService}{Customer has a phone service (Yes/No).}
+\item{MultipleLines}{Whether the customer has multiple lines.}
+\item{InternetService}{Internet provider (DSL, Fiber Optic, No).}
+\item{OnlineSecurity}{Customer has online security (Yes/No/No Internet).}
+\item{OnlineBackup}{Customer has online backup (Yes/No/No Internet).}
+\item{DeviceProtection}{Customer has device protection (Yes/No/No internet service).}
+\item{TechSupport}{Customer has tech support (Yes/No/No internet).}
+\item{StreamingTV}{Customer has streaming TV (Yes/No/No internet service).}
+\item{StreamingMovies}{Customer has streaming movies (Yes/No/No Internet service).}
+\item{Contract}{Contract term (Month-to-month, One year, Two year).}
+\item{PaperlessBilling}{Customer has paperless billing (Yes/No).}
+\item{PaymentMethod}{Payment method (Electronic check, Mailed check, Bank transfer automatic, Credit card automatic).}
+\item{MonthlyCharges}{Amount charged to the customer monthly.}
+\item{TotalCharges}{Total amount charged to the customer.}
+\item{Churn}{Whether the customer churned (Yes/No).}
 }
 }
 \source{
 Kimathi Newton, Telco Customer Churn (Vodafone case study):
 \url{https://github.com/KimathiNewton/Telco-Customer-Churn}
+}
+\usage{
+data(telco_churn)
 }
 \description{
 Customer-level attributes and churn flag from a Vodafone churn study. The goal
@@ -47,12 +50,5 @@ impact, segment risk profiles, and propose targeted retention tactics for
 marketing and sales teams. It also supports model validation, benchmarking of
 intervention strategies over time, and crafting data-backed business cases for
 customer success initiatives.
-}
-\examples{
-path <- system.file("extdata", "telco_churn.csv", package = "ClusterCarac")
-if (file.exists(path)) {
-  telco_churn <- read.csv(path)
-  head(telco_churn)
-}
 }
 \keyword{datasets}
