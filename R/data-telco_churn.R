@@ -32,10 +32,10 @@
 #' @examples
 #' path <- system.file("extdata", "telco_churn.csv", package = "ClusterCarac")
 #' if (file.exists(path)) {
-#'   telco <- read.csv(path)
-#'   head(telco)
+#'   telco_churn <- read.csv(path)
+#'   head(telco_churn)
 #' }
 #' @keywords datasets
-#' @name telco_churn_csv
+#' @name telco_churn
 #' @docType data
 NULL
