@@ -2,6 +2,8 @@ Package: ClusterCarac
 Title: Tools for Cluster or classification Characterization
 Version: 0.0.0.9000
 Authors@R: person("Pedro Cesar", "Del Campo Neira", email = "pcdelcampon@gmail.com", role = c("aut", "cre"))
+Author: Pedro Cesar Del Campo Neira [aut, cre]
+Maintainer: Pedro Cesar Del Campo Neira <pcdelcampon@gmail.com>
 Description: Characterization of categorical variables by classes using inferential statistics.
 License: MIT + file LICENSE
 Encoding: UTF-8
