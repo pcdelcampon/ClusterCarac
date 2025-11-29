@@ -1,3 +1,11 @@
+if (getRversion() >= "2.15.1") {
+  utils::globalVariables(c(
+    "category", "variable", "classc", "wt", "njk", "nj", "nk", "n",
+    "clas_mod", "mod_clas", "Global", "p_value", "statistic",
+    "clas_cat", "cat_clas", "global", "class"
+  ))
+}
+
 #' Characterize categorical variables by class
 #'
 #' Computes enrichment metrics (statistics, p-value) according to the hypergeometric distribution for each cluster or classification, getting the most relevant categories from qualitative variables, optionally using weights and adjusting for NAs.
@@ -44,13 +52,6 @@
 #' @importFrom tidyselect everything
 #' @importFrom stats phyper qnorm
 #' @importFrom utils globalVariables
-if (getRversion() >= "2.15.1") {
-  utils::globalVariables(c(
-    "category", "variable", "classc", "wt", "njk", "nj", "nk", "n",
-    "clas_mod", "mod_clas", "Global", "p_value", "statistic",
-    "clas_cat", "cat_clas", "global", "class"
-  ))
-}
 cluster_carac_quali <- 
   function( dtf , classc , alpha = 0.05, wt = NULL, na_class = TRUE , na_categ = TRUE, extra_info = TRUE  ){  
     

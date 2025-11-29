@@ -28,9 +28,9 @@ df0 <- read.csv(
   na.strings = c("", " ", "nan", "NaN")
 )
 
-df <- df0[-1] quita la primera columna índice
-
-df <- df %>% relocate(TechSupport, .before = StreamingTV)
+df <- df0[-1] 
+df <- df |> dplyr::rename( TechSupportInternet = Techsupport )
+df <- df |> dplyr::relocate(TechSupportInternet, .after = TechSupport )
 
 # 4) Guardar
 telco_churn <- df
