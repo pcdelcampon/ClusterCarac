@@ -5,7 +5,7 @@
 \alias{telco_churn}
 \title{Telco customer churn (Vodafone case study)}
 \format{
-A CSV file with 5,043 rows and 21 variables:
+A CSV file with 5,043 rows and 22 variables:
 \describe{
 \item{customerID}{Customer identifier.}
 \item{gender}{Male or Female.}
@@ -19,7 +19,8 @@ A CSV file with 5,043 rows and 21 variables:
 \item{OnlineSecurity}{Customer has online security (Yes/No/No Internet).}
 \item{OnlineBackup}{Customer has online backup (Yes/No/No Internet).}
 \item{DeviceProtection}{Customer has device protection (Yes/No/No internet service).}
-\item{TechSupport}{Customer has tech support (Yes/No/No internet).}
+\item{TechSupport}{Customer has tech support (Yes/No).}
+\item{TechSupportInternet}{Internet-specific tech support (Yes/No/No internet).}
 \item{StreamingTV}{Customer has streaming TV (Yes/No/No internet service).}
 \item{StreamingMovies}{Customer has streaming movies (Yes/No/No Internet service).}
 \item{Contract}{Contract term (Month-to-month, One year, Two year).}

@@ -20,3 +20,20 @@ data("telco_churn", package = "ClusterCarac")
 #telco_churn[telco_churn == "" | telco_churn == " "] <- NA
 
 telco_churn
+
+# 1) Cargar y limpiar vacíos
+df0 <- read.csv(
+  "inst/extdata/telco_churn.csv",
+  stringsAsFactors = FALSE,
+  na.strings = c("", " ", "nan", "NaN")
+)
+
+df <- df0[-1] quita la primera columna índice
+
+df <- df %>% relocate(TechSupport, .before = StreamingTV)
+
+# 4) Guardar
+telco_churn <- df
+save(telco_churn, file = "data/telco_churn.rda", compress = "bzip2")
+
+

@@ -13,7 +13,7 @@
 #' intervention strategies over time, and crafting data-backed business cases for
 #' customer success initiatives.
 #'
-#' @format A CSV file with 5,043 rows and 21 variables:
+#' @format A CSV file with 5,043 rows and 22 variables:
 #' \describe{
 #'   \item{customerID}{Customer identifier.}
 #'   \item{gender}{Male or Female.}
@@ -28,6 +28,7 @@
 #'   \item{OnlineBackup}{Customer has online backup (Yes/No/No Internet).}
 #'   \item{DeviceProtection}{Customer has device protection (Yes/No/No internet service).}
 #'   \item{TechSupport}{Customer has tech support (Yes/No/No internet).}
+#'   \item{TechSupportInternet}{Internet-specific tech support (Yes/No/No internet).}
 #'   \item{StreamingTV}{Customer has streaming TV (Yes/No/No internet service).}
 #'   \item{StreamingMovies}{Customer has streaming movies (Yes/No/No Internet service).}
 #'   \item{Contract}{Contract term (Month-to-month, One year, Two year).}
